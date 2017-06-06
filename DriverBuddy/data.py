@@ -229,6 +229,6 @@ def is_driver():
     print "[+] Checking if driver is loaded..."
     # Iterate through exports section
     for index, ordinal, ea, name in Entries():
-        if name == "DriverEntry":
+        if name.find("DriverEntry") >= 0:
             driver_entry_address = ea
     return driver_entry_address
