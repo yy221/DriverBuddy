@@ -26,6 +26,8 @@ def check_for_fake_driver_entry(driver_entry_address):
 	while GetMnem(end_address) !="jmp" and GetMnem(end_address) !="call":
 	    end_address -= 0x1
 	real_driver_entry_address = LocByName(GetOpnd(end_address, 0))
+	if real_driver_entry_address == BADADDR:
+		return driver_entry_address
 	print "[+] Found real DriverEntry address of %08x" % real_driver_entry_address
 	MakeName(real_driver_entry_address, "Real_Driver_Entry")
 	return real_driver_entry_address
